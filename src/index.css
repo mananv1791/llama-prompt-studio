@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-app-region: no-drag;
+  }
+  
+  .drag-region {
+    -webkit-app-region: drag;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply flex items-center gap-2 px-4 py-2 bg-accent text-white font-medium text-sm rounded-lg
+           hover:bg-accent-light transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed
+           shadow-accent-sm hover:shadow-accent active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply flex items-center gap-2 px-4 py-2 bg-surface-3 text-gray-200 font-medium text-sm rounded-lg
+           border border-border hover:border-border-hover hover:bg-surface-4 transition-all duration-200
+           disabled:opacity-40 disabled:cursor-not-allowed active:scale-95;
+  }
+  
+  .btn-ghost {
+    @apply flex items-center gap-2 px-3 py-1.5 text-gray-400 font-medium text-sm rounded-lg
+           hover:text-gray-200 hover:bg-surface-3 transition-all duration-150 active:scale-95;
+  }
+
+  .input-field {
+    @apply w-full min-w-0 bg-surface-2 border border-border text-gray-200 rounded-lg px-3 py-2 text-sm
+           focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30
+           placeholder:text-muted transition-all duration-200;
+  }
+
+  .select-field {
+    @apply w-full min-w-0 bg-surface-2 border border-border text-gray-200 rounded-lg px-3 py-2 text-sm
+           focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30
+           transition-all duration-200 cursor-pointer appearance-none;
+  }
+
+  .card {
+    @apply bg-surface-1 border border-border rounded-lg p-4 transition-all duration-200;
+  }
+
+  .card-hover {
+    @apply card hover:border-border-hover hover:bg-surface-2 hover:shadow-card-hover cursor-pointer;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .code-block {
+    @apply font-mono text-xs bg-surface-0 border border-border rounded-lg p-4 overflow-auto;
+  }
+
+  .section-label {
+    @apply block text-xs font-semibold uppercase tracking-widest text-muted mb-2;
+  }
+
+  .tag {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 bg-surface-3 border border-border
+           rounded-md text-xs text-gray-300 hover:border-border-hover cursor-pointer
+           transition-all duration-150 hover:text-gray-100 active:scale-95;
+  }
+
+  .tag-active {
+    @apply tag bg-accent/20 border-accent/40 text-accent-light;
+  }
+}
+
+/* Animated gradient border for cards */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(124,106,247,0.5), rgba(45,212,191,0.3), rgba(249,115,22,0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Streaming text cursor */
+.streaming-cursor::after {
+  content: '▊';
+  animation: blink 1s step-end infinite;
+  color: #7c6af7;
+  margin-left: 2px;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Token count pill */
+.token-pill {
+  background: linear-gradient(135deg, rgba(124,106,247,0.15), rgba(45,212,191,0.1));
+  border: 1px solid rgba(124,106,247,0.25);
+}
+
+/* Progress bar shimmer */
+.progress-shimmer {
+  background: linear-gradient(90deg, #7c6af7 0%, #a594ff 50%, #7c6af7 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Scrollbar for panels */
+.scroll-panel {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+
+/* Checkbox custom styling */
+input[type="checkbox"] {
+  accent-color: #7c6af7;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* Select arrow */
+.select-wrapper {
+  position: relative;
+}
+.select-wrapper::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #6b7280;
+  pointer-events: none;
+}
